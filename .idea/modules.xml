@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/ejb-timer/jboss-ejb-timer.iml" filepath="$PROJECT_DIR$/../../jboss-eap-quickstarts/ejb-timer/jboss-ejb-timer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/jboss-kitchensink-ear.iml" filepath="$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/jboss-kitchensink-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/ear/jboss-kitchensink-ear-ear.iml" filepath="$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/ear/jboss-kitchensink-ear-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/ejb/jboss-kitchensink-ear-ejb.iml" filepath="$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/ejb/jboss-kitchensink-ear-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/web/jboss-kitchensink-ear-web.iml" filepath="$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/web/jboss-kitchensink-ear-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-app.iml" filepath="$PROJECT_DIR$/my-app.iml" />
+    </modules>
+  </component>
+</project>

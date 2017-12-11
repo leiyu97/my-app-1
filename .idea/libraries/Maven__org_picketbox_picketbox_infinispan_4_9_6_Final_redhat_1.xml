@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.picketbox:picketbox-infinispan:4.9.6.Final-redhat-1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/picketbox/picketbox-infinispan/4.9.6.Final-redhat-1/picketbox-infinispan-4.9.6.Final-redhat-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/picketbox/picketbox-infinispan/4.9.6.Final-redhat-1/picketbox-infinispan-4.9.6.Final-redhat-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/picketbox/picketbox-infinispan/4.9.6.Final-redhat-1/picketbox-infinispan-4.9.6.Final-redhat-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/ejb-timer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/ear" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/ejb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../jboss-eap-quickstarts/kitchensink-ear/web" charset="UTF-8" />
+  </component>
+</project>
