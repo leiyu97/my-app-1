@@ -1,7 +1,7 @@
 package org.larinia.client;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class MyLogging {
 
@@ -45,7 +45,7 @@ public class MyLogging {
                 myLogging = new MyLogging();
             }
             if (logger == null) {
-                logger = LogManager.getLogger();
+                logger = LogManager.getLogger(MyLogging.class.getName());
             }
         }
 

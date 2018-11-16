@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="SMTPHelios" class="org.apache.log4j.net.SMTPAppender">
+        <param name="Threshold" value="INFO"/>
+        <param name="To" value="angel03012018@gmail.com"/>
+
+        <param name="From" value="JBoss@example.com"/>
+        <param name="Subject" value="test smtp mail withou lib"/>
+        <param name="SMTPHost" value="smtp.gmail.com"/>
+        <param name="SMTPPort" value="465"/>
+        <param name="smtp.starttls.enable" value="true"/>
+        <param name="SMTPUsername" value="angel03012018@gmail.com"></param>
+        <param name="SMTPPassword" value="Leaseplan12018#"></param>
+        <param name="BufferSize" value="10"/>
+        <param name="SMTPProtocol" value="smtps"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{MM/dd/yyyy HH:mm:ss}[%M] %-5p %C - %m%n"/>
+        </layout>
+    </appender>
+
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="SMTPHelios"/>
+    </root>
+
+</configuration>

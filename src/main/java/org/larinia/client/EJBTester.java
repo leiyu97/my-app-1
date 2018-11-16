@@ -3,7 +3,8 @@ package org.larinia.client;
 
 import com.larinia.ejb.CallerLocal;
 
-import javax.naming.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Hashtable;
@@ -117,6 +118,7 @@ public class EJBTester {
         Hashtable<String, String> env = new Hashtable<String, String>();
 
         env.put("java.naming.factory.initial", "org.jboss.naming.remote.client.InitialContextFactory");
+        //env.put("java.naming.factory.initial", "org.wildfly.naming.client.WildFlyInitialContextFactory");
         env.put("java.naming.provider.url", "remote://totoro.usersys.redhat.com:4447");
         // env.put("java.naming.provider.url", "https-remoting://totoro.usersys.redhat.com:8443");
         env.put("jboss.naming.client.ejb.context", "true");
@@ -126,10 +128,12 @@ public class EJBTester {
 
         // FIXME:  SSL related config parameters
         env.put("jboss.naming.client.remote.connectionprovider.create.options.org.xnio.Options.SSL_ENABLED", "true");
-        env.put("jboss.naming.client.connect.options.org.xnio.Options.SSL_STARTTLS", "true");
-        // env.put("remote.connection.default.protocol","https-remoting");
+       // env.put("jboss.naming.client.connect.options.org.xnio.Options.SSL_STARTTLS", "false");
+       // env.put("remote.connection.default.protocol","https-remoting");
+       // env.put("jboss.naming.client.connect.options.org.xnio.Options.SSL_PROTOCOL","TLSv1.2");
         env.put("remote.connection.default.protocol", "remoting");
         env.put("remote.connection.default.connect.options.org.xnio.Options.SASL_DISALLOWED_MECHANISMS", "JBOSS-LOCAL-USER");
+        env.put("jboss.naming.client.connect.options.org.xnio.Options.SSL_JSSE_TRUST_MANAGER_CLASSES", "org.larinia.client.NullTrustManager");
 //        env.put("remote.connections","default");
 //        env.put("remote.connection.default.host","totoro.usersys.redhat.com");
 //        env.put("remote.connection.default.port","8443");
@@ -138,8 +142,8 @@ public class EJBTester {
         // env.put("jboss.naming.client.connect.options.org.xnio.Options.SASL_DISALLOWED_MECHANISMS","JBOSS-LOCAL-USER");
 
 
-        env.put(Context.SECURITY_PRINCIPAL, "admin");
-        env.put(Context.SECURITY_CREDENTIALS, "Admin123$");
+        env.put(Context.SECURITY_PRINCIPAL, "lei");
+        env.put(Context.SECURITY_CREDENTIALS, "lei");
 
         InitialContext ctx = new InitialContext(env);
 
@@ -167,6 +171,7 @@ public class EJBTester {
         System.out.println(resultString);
 
         System.out.println("*** end Remote Naming API ***");
+
     }
 
     // This method works with eap 7, the bean itself have annotations such as allowedroles

@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee/
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <distributable/>
     <listener>
         <listener-class>com.larinia.app.AppContextListener</listener-class>
     </listener>
@@ -13,11 +15,21 @@
         <servlet-class>com.larinia.app.SecondServlet</servlet-class>
     </servlet>
     <servlet>
-        <description></description>
-        <display-name>UploadServlet</display-name>
         <servlet-name>UploadServlet</servlet-name>
         <servlet-class>com.larinia.app.UploadServlet</servlet-class>
     </servlet>
+
+    <!--servlet>
+        <servlet-name>AlertsAjaxServlet</servlet-name>
+        <servlet-class>com.larinia.app.AlertsAjaxServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AlertsAjaxServlet</servlet-name>
+        <url-pattern>/AlertsAjaxServlet/*</url-pattern>
+    </servlet-mapping-->
 
     <servlet-mapping>
         <servlet-name>MyFirstServlet</servlet-name>
@@ -36,5 +48,16 @@
         <url-pattern>/UploadServlet</url-pattern>
     </servlet-mapping>
 
+    <!--security-constraint>
+        <web-resource-collection>
+            <web-resource-name>NoAccess</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>OPTIONS</http-method>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint-->
 
 </web-app>

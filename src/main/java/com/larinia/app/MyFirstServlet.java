@@ -3,28 +3,40 @@ package com.larinia.app;
 //import com.aspose.words.*;
 //import com.aspose.words.Shape;
 
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
+//import org.slf4j.LoggerFactory;
+
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import javax.transaction.TransactionManager;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 
 public class MyFirstServlet extends HttpServlet {
     private String message;
     static final String dataDir = "/data/case_download/";
-
+    @Resource(name = "java:/TransactionManager")
+    private TransactionManager transactionManager;
     // private org.apache.log4j.Logger log4jlogger = org.apache.log4j.Logger.getLogger(this.getClass());
 
-    //private Logger log = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = Logger.getLogger(MyFirstServlet.class);
+
     public void init() throws ServletException {
         // Do required initialization
         message = "Hello World";
@@ -34,24 +46,82 @@ public class MyFirstServlet extends HttpServlet {
                       HttpServletResponse response)
             throws ServletException, IOException {
         // Set response content type
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        logger.info("MyFirstServlet.doGet: time start is " + formatter.format(System.currentTimeMillis()));
+        System.out.println("MyFirstServlet.doGet: thread sleep: start ");
+
+       /* int DELAY= 60000;
+        boolean RANDOMIZE = false;
+        //    Document docNew = null;
+        if (DELAY > 0){
+            int delay;
+            if (RANDOMIZE){
+
+                delay = (int) Math.random();
+            } else {
+                delay = DELAY;
+            }
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e1) {
+                logger.error(e1);
+            }
+        }*/
+
+        //  System.out.println("MyFirstServlet.doGet: thread sleep: stop "+formatter.format(System.currentTimeMillis()));
         response.setContentType("text/html");
+
+        // request.setCharacterEncoding("UTF-8");
+
+        System.out.println("MyFirstServlet.doGet: request URI " + request.getRequestURI());
+        System.out.println("MyFirstServlet.doGet: reuqest URL" + request.getRequestURL());
+
+
+        System.out.println("MyFirstServlet.doGet: reuqest get parameter: " + request.getParameter("NOTIZ1"));
+
+
+        logger.warn("test the method to see if it works");
+
+        logger.error("MyFirstServlet.doGet:log4j error test");
+        logger.error("test the method to see if it works error test");
+        logger.error("log4j implement title: " + logger.getClass().getPackage().getImplementationTitle());
+        logger.error("log4j implement vendor: " + logger.getClass().getPackage().getImplementationVendor());
+        logger.error("log4j implement version: " + logger.getClass().getPackage().getImplementationVersion());
+
+
         System.out.println("MyFirstServlet.doGet: *************** in here**********************");
 
+        System.out.println(logger.getClass().getPackage().getImplementationTitle());
+        System.out.println(logger.getClass().getPackage().getImplementationVendor());
+        System.out.println(logger.getClass().getPackage().getImplementationVersion());
+
+       /* String lStrNameMarathi1 = request.getParameter("txtNameInMarathi");
+        logger.info("lStrNameMarathi1 from request:"+lStrNameMarathi1);
+        byte[] bytes = lStrNameMarathi1.getBytes("ISO-8859-1");
+        String lStrNameMarathi = new String(bytes, "UTF-8");
+
+        logger.info("lStrNameMarathi gayathri from bytes:"+lStrNameMarathi);​*/
         // Actual logic goes here.
+
+
         PrintWriter out = response.getWriter();
-    //    Document docNew = null;
 
         //
-       try {
-           //convertImageToPdf("/home/lyu/Downloads/images_totoro.jpg","/data/case_download/image_totoro.pdf");
-    //       docNew = testShapeRender();
+        try {
+            //convertImageToPdf("/home/lyu/Downloads/images_totoro.jpg","/data/case_download/image_totoro.pdf");
+            //       docNew = testShapeRender();
         } catch (Exception e) {
             e.printStackTrace();
         }
         out.println("<h1> My First Sevlet </h1>");
 
-        out.println("Testing shape Render at the moment\r\n");
-    //    out.println(docNew);
+        out.println("<b>Testing shape Render at the moment</b><br/>");
+        out.println("<b>System properties: protocol is </b> " + System.getProperty("https.protocols") + "<br>");
+        out.println("<b>System properties: jdk.tls is </b> " + System.getProperty("jdk.tls.client.protocols") + "<br>");
+        //    out.println(docNew);
+        out.println("<b>The words in url is </b> " + request.getParameter("NOTIZ1"));
+
+        logger.info("MyFirstServlet.doGet: time end is " + formatter.format(System.currentTimeMillis()));
         out.close();
     }
 
@@ -185,6 +255,42 @@ public class MyFirstServlet extends HttpServlet {
         // Save the document to PDF.
         doc.save(outputFileName);
     }*/
+    public void callRemoteURL() throws IOException {
+
+        HttpHost proxy = new HttpHost("127.0.0.1", 8080, "https");
+
+        // DefaultHttpClient httpclient = new SystemDefaultHttpClient();
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+        try {
+
+            httpclient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+
+            HttpHost target = new HttpHost("issues.apache.org", 443, "https");
+            HttpGet req = new HttpGet("/");
+
+            System.out.println("executing request to " + target + " via " + proxy);
+            HttpResponse rsp = httpclient.execute(target, req);
+            HttpEntity entity = rsp.getEntity();
+
+            System.out.println("----------------------------------------");
+            System.out.println(rsp.getStatusLine());
+            Header[] headers = rsp.getAllHeaders();
+            for (int i = 0; i < headers.length; i++) {
+                System.out.println(headers[i]);
+            }
+            System.out.println("----------------------------------------");
+
+            if (entity != null) {
+                System.out.println(EntityUtils.toString(entity));
+            }
+
+        } finally {
+            // When HttpClient instance is no longer needed,
+            // shut down the connection manager to ensure
+            // immediate deallocation of all system resources
+            httpclient.getConnectionManager().shutdown();
+        }
+    }
 }
 
 

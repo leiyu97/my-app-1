@@ -18,14 +18,19 @@ public class AppContextListener implements ServletContextListener {
     //@Override
     public void contextInitialized(ServletContextEvent evt) {
         ServletContext ctx = evt.getServletContext();
-        System.out.println("###### contextInitialized(): ServerInfo: " +
-                ctx.getServerInfo() + "########### " + System.currentTimeMillis());
-        System.out.println("contextInitialized(): ContextPath: " +
-                ctx.getContextPath() + " " + System.currentTimeMillis());
+        //System.out.println("###### contextInitialized(): ServerInfo: " +
+               // ctx.getServerInfo() + "########### " + System.currentTimeMillis());
+        //System.out.println("contextInitialized(): ContextPath: " +
+              //  ctx.getContextPath() + " " + System.currentTimeMillis());
         logger.info("contextInitialized(): ServerInfo: " +
                 ctx.getServerInfo() + " " + System.currentTimeMillis());
         logger.info("contextInitialized(): ContextPath: " +
                 ctx.getContextPath() + " " + System.currentTimeMillis());
+
+        logger.error("contextInitialized(): ServerInfo: " +
+                ctx.getServerInfo() + " " + System.currentTimeMillis() +"error test");
+        logger.error("contextInitialized(): ContextPath: " +
+                ctx.getContextPath() + " " + System.currentTimeMillis() +"error test");
         tcl = new TomcatLogging();
         tcl.start();
     }
@@ -33,14 +38,18 @@ public class AppContextListener implements ServletContextListener {
     //@Override
     public void contextDestroyed(ServletContextEvent evt) {
         ServletContext ctx = evt.getServletContext();
-        System.out.println("contextDestroyed(): ServerInfo: " +
-                ctx.getServerInfo() + " " + System.currentTimeMillis());
-        System.out.println("contextDestroyed(): ContextPath: " +
-                ctx.getContextPath() + " " + System.currentTimeMillis());
+       // System.out.println("contextDestroyed(): ServerInfo: " +
+                //ctx.getServerInfo() + " " + System.currentTimeMillis());
+       // System.out.println("contextDestroyed(): ContextPath: " +
+               // ctx.getContextPath() + " " + System.currentTimeMillis());
         logger.info("contextDestroyed(): ServerInfo: " +
                 ctx.getServerInfo() + " " + System.currentTimeMillis());
         logger.info("contextDestroyed(): ContextPath: " +
                 ctx.getContextPath() + " " + System.currentTimeMillis());
+        logger.error("contextDestroyed(): ServerInfo: " +
+                ctx.getServerInfo() + " " + System.currentTimeMillis() +"error test");
+        logger.error("contextDestroyed(): ContextPath: " +
+                ctx.getContextPath() + " " + System.currentTimeMillis() +"error test");
         tcl.setAlive(false);
     }
 }

@@ -37,7 +37,8 @@ public class MBeanLeiNotificationListener implements NotificationListener {
         	System.out.println(">>>>>>> MBeanNotificationLeiListener started >>>>>>>");
             platformMBeanServer = ManagementFactory.getPlatformMBeanServer();
            // name = new ObjectName("JMImplementation:type=MBeanServerDelegate");
-            name = new ObjectName("jboss.as:subsystem=ejb3,thread-pool=default");
+           // name = new ObjectName("jboss.as:subsystem=ejb3,thread-pool=default");
+            name =new ObjectName("jboss.as:socket-binding-group=standard-sockets,socket-binding=http/boundAddress");
             NotificationListener listener = this;            
             Object handback = null; // The context to be sent to the listener when a notification is emitted.
             platformMBeanServer.addNotificationListener(name, listener, filterAllButACN, handback);

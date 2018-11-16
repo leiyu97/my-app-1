@@ -1,0 +1,38 @@
+log4j.rootLogger=info, stdout ,system
+log4j.rootCategory=info,stdout
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.Threshold=INFO
+log4j.appender.stdout.layout.ConversionPattern=[%X{sessionId}][%p][%d{yy/MM/dd HH:mm:ss}][%C-%L][%X{userId}]-%m%n
+
+log4j.appender.system=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.system.DatePattern='.'yyyy-MM-dd
+log4j.appender.system.Encoding=UTF-8
+log4j.appender.system.File=${log4j.path}/cs_system.log
+log4j.appender.system.layout=org.apache.log4j.PatternLayout
+log4j.appender.system.layout.ConversionPattern=[%X{sessionId}][%p][%d{yy/MM/dd HH:mm:ss}][%C-%L][%X{userId}]-%m%n
+
+log4j.logger.other=info, other
+log4j.appender.other=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.other.DatePattern='.'yyyy-MM-dd
+log4j.appender.other.Encoding=UTF-8
+log4j.appender.other.File=${log4j.path}/cs_other.log
+log4j.appender.other.layout=org.apache.log4j.PatternLayout
+log4j.appender.other.layout.ConversionPattern=[%X{sessionId}][%p][%d{yy/MM/dd HH:mm:ss}][%C-%L][%X{userId}]-%m%n
+
+log4j.logger.TRANSACTION=info, TRANSACTION
+log4j.appender.TRANSACTION=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.TRANSACTION.DatePattern='.'yyyy-MM-dd
+log4j.appender.TRANSACTION.Encoding=UTF-8
+log4j.appender.TRANSACTION.File=${log4j.path}/cs_transaction.log
+log4j.appender.TRANSACTION.layout=org.apache.log4j.PatternLayout
+log4j.appender.TRANSACTION.layout.ConversionPattern=[%X{sessionId}][%p][%d{yy/MM/dd HH:mm:ss}][%C-%L][%X{userId}]-%m%n
+
+log4j.logger.API=info, API
+log4j.appender.API=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.API.DatePattern='.'yyyy-MM-dd
+log4j.appender.API.Encoding=UTF-8
+log4j.appender.API.File=${log4j.path}/cs_api.log
+log4j.appender.API.layout=org.apache.log4j.PatternLayout
+log4j.appender.API.layout.ConversionPattern=[%X{sessionId}][%p][%d{yy/MM/dd HH:mm:ss}][%C-%L][%X{userId}]-%m%n
